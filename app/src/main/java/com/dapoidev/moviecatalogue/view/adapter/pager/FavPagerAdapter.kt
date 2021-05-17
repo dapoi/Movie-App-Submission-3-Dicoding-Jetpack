@@ -21,7 +21,7 @@ class FavPagerAdapter(private val context: Context, fragmentManager: FragmentMan
         when (position) {
             0 -> MovieFavoriteFragment()
             1 -> TvShowFavoriteFragment()
-            else -> MovieFavoriteFragment()
+            else -> Fragment()
         }
 
     override fun getPageTitle(position: Int): CharSequence =

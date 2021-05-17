@@ -21,7 +21,7 @@ class MainPagerAdapter(private val context: Context, fragmentManager: FragmentMa
         when (position) {
             0 -> MoviesFragment()
             1 -> TVShowsFragment()
-            else -> MoviesFragment()
+            else -> Fragment()
         }
 
     override fun getPageTitle(position: Int): CharSequence =

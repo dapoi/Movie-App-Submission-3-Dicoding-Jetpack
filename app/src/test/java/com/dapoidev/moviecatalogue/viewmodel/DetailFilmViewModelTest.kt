@@ -9,7 +9,6 @@ import com.dapoidev.moviecatalogue.model.data.remote.repository.FilmCatalogueRep
 import com.dapoidev.moviecatalogue.utils.DataDetailDummy
 import com.dapoidev.moviecatalogue.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -67,36 +66,26 @@ class DetailFilmViewModelTest {
     }
 
     @Test
-    fun `setMovieFav should be success`() {
+    fun setMovieFav() {
         val movies = MutableLiveData<Resource<MovieEntity>>()
         movies.value = Resource.success(DataDetailDummy.getDetailMovie())
 
         `when`(filmCatalogueRepository.loadDetailMovies(movieID)).thenReturn(movies)
 
         viewModel.setDataMovie(movieID).observeForever(movieObserver)
-        verify(movieObserver).onChanged(movies.value)
-
         viewModel.setMovieFavorite()
-        val expectedValue = movies.value
-        val actualValue = viewModel.setDataMovie(movieID).value
-
-        Assert.assertEquals(expectedValue, actualValue)
+        verify(filmCatalogueRepository).setMoviesFav((movies.value?.data) as MovieEntity, true)
     }
 
     @Test
-    fun `setTVShowFav should be success`() {
+    fun setTVShowFav() {
         val tvShow = MutableLiveData<Resource<TVShowEntity>>()
         tvShow.value = Resource.success(DataDetailDummy.getDetailTVShow())
 
         `when`(filmCatalogueRepository.loadDetailTVShows(tvShowID)).thenReturn(tvShow)
 
         viewModel.setDataTVShow(tvShowID).observeForever(tvShowObserver)
-        verify(tvShowObserver).onChanged(tvShow.value)
-
         viewModel.setTVShowFavorite()
-        val expectedValue = tvShow.value
-        val actualValue = viewModel.setDataTVShow(tvShowID).value
-
-        Assert.assertEquals(expectedValue, actualValue)
+        verify(filmCatalogueRepository).setTVShowsFav((tvShow.value?.data) as TVShowEntity, true)
     }
 }
