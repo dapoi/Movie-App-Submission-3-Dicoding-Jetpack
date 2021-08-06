@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.dapoidev.moviecatalogue.model.data.entity.MovieEntity
 import com.dapoidev.moviecatalogue.model.data.entity.TVShowEntity
 
-@Database(entities = [MovieEntity::class, TVShowEntity::class], version = 3, exportSchema = false)
+@Database(entities = [MovieEntity::class, TVShowEntity::class], version = 4, exportSchema = false)
 abstract class FilmDatabase : RoomDatabase() {
     abstract fun filmDao(): FilmDao
 

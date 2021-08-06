@@ -10,19 +10,19 @@ data class TVShowEntity(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
-    val id: Int,
+    val id: Int?,
 
     @ColumnInfo(name = "title")
-    val title: String,
+    val title: String?,
 
     @ColumnInfo(name = "date")
-    val date: String,
+    val date: String?,
 
     @ColumnInfo(name = "desc")
-    val desc: String,
+    val desc: String?,
 
     @ColumnInfo(name = "image")
-    val image: String,
+    val image: String?,
 
     @ColumnInfo(name = "addFav")
     var addFav: Boolean = false

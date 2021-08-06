@@ -49,6 +49,8 @@ class TvShowFavoriteFragment : Fragment() {
             viewModel.getFavListTVShow().observe(viewLifecycleOwner, {
                 false.progressBar()
                 tvShowFavAdapter.submitList(it)
+                tvShowFavoriteBinding.viewEmpty.root.visibility =
+                    if (it.isNotEmpty()) View.GONE else View.VISIBLE
             })
 
             with(tvShowFavoriteBinding.rvTvshowsFav) {

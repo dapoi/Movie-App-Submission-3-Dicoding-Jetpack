@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,8 @@ class MoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
+
+            (activity as AppCompatActivity).supportActionBar!!.title = "MOVIES"
 
             val factory = ViewModelFactory.getInstance(requireActivity())
             viewModel = ViewModelProvider(this, factory)[FilmViewModel::class.java]

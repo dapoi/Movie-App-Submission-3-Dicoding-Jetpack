@@ -16,7 +16,7 @@ import com.dapoidev.moviecatalogue.viewmodel.FavoriteViewModel
 import com.dapoidev.moviecatalogue.viewmodel.ViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
-class MovieFavoriteFragment : Fragment(){
+class MovieFavoriteFragment : Fragment() {
 
     private lateinit var movieFavoriteBinding: FragmentMovieFavoriteBinding
     private lateinit var viewModel: FavoriteViewModel
@@ -48,6 +48,8 @@ class MovieFavoriteFragment : Fragment(){
             viewModel.getFavListMovie().observe(viewLifecycleOwner, {
                 false.progressBar()
                 movieFavAdapter.submitList(it)
+                movieFavoriteBinding.viewEmpty.root.visibility =
+                    if (it.isNotEmpty()) View.GONE else View.VISIBLE
             })
 
             movieFavoriteBinding.rvMoviesFav.apply {

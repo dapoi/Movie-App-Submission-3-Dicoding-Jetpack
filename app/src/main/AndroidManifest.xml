@@ -12,15 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieCatalogue"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".view.activity.FavoriteActivity"
-            android:launchMode="singleTop"
-            android:parentActivityName=".view.activity.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.activity.MainActivity" />
-        </activity>
+        tools:replace="android:allowBackup">
         <activity
             android:name=".view.activity.SplashScreenActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
@@ -32,8 +24,7 @@
         </activity>
         <activity
             android:name=".view.activity.DetailActivity"
-            android:label="Please wait...."
-            android:parentActivityName=".view.activity.FavoriteActivity">
+            android:label="Please wait....">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.activity.MainActivity" />

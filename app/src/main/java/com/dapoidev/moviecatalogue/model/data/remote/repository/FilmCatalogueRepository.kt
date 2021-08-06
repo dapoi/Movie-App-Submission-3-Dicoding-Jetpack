@@ -96,7 +96,7 @@ class FilmCatalogueRepository private constructor(
                 val listTVShow = ArrayList<TVShowEntity>()
                 for (dataTVShow in data) {
                     with(dataTVShow) {
-                        val tvShow = TVShowEntity(id, title, date, desc, image, false)
+                        val tvShow = TVShowEntity(id, title, date, desc, image)
                         listTVShow.add(tvShow)
                     }
                 }
