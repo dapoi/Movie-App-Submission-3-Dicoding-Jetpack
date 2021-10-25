@@ -5,14 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
 import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
-import com.dapoidev.moviecatalogue.data.source.IFilmCatalogueRepository
+import com.dapoidev.moviecatalogue.data.source.FilmRepository
 import com.dapoidev.moviecatalogue.vo.Resource
 
-class FilmViewModel(private val filmCatalogueRepository: IFilmCatalogueRepository) : ViewModel() {
+class FilmViewModel(private val filmRepository: FilmRepository) : ViewModel() {
 
     fun getListMovies(): LiveData<Resource<PagedList<MovieEntity>>> =
-        filmCatalogueRepository.loadMovies()
+        filmRepository.loadMovies()
 
     fun getListTVShows(): LiveData<Resource<PagedList<TVShowEntity>>> =
-        filmCatalogueRepository.loadTVShows()
+        filmRepository.loadTVShows()
 }

@@ -5,21 +5,21 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
 import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
-import com.dapoidev.moviecatalogue.data.source.IFilmCatalogueRepository
+import com.dapoidev.moviecatalogue.data.source.FilmRepository
 
-class FavoriteViewModel(private val filmCatalogueRepository: IFilmCatalogueRepository) : ViewModel() {
+class FavoriteViewModel(private val filmRepository: FilmRepository) : ViewModel() {
 
-    fun getFavListMovie(): LiveData<PagedList<MovieEntity>> = filmCatalogueRepository.getMoviesFav()
+    fun getFavListMovie(): LiveData<PagedList<MovieEntity>> = filmRepository.getMoviesFav()
 
-    fun getFavListTVShow(): LiveData<PagedList<TVShowEntity>> = filmCatalogueRepository.getTVShowsFav()
+    fun getFavListTVShow(): LiveData<PagedList<TVShowEntity>> = filmRepository.getTVShowsFav()
 
     fun setFavListMovie(movieEntity: MovieEntity) {
         val newState = !movieEntity.addFav
-        filmCatalogueRepository.setMoviesFav(movieEntity, newState)
+        filmRepository.setMoviesFav(movieEntity, newState)
     }
 
     fun setFavListTVShow(tvShowEntity: TVShowEntity) {
         val newState = !tvShowEntity.addFav
-        filmCatalogueRepository.setTVShowsFav(tvShowEntity, newState)
+        filmRepository.setTVShowsFav(tvShowEntity, newState)
     }
 }

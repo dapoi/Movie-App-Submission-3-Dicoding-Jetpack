@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
 import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
-import com.dapoidev.moviecatalogue.data.source.IFilmCatalogueRepository
+import com.dapoidev.moviecatalogue.data.source.FilmRepository
 import com.dapoidev.moviecatalogue.data.utils.DataDetailDummy
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
@@ -28,7 +28,7 @@ class FavoriteViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var filmCatalogueRepository: IFilmCatalogueRepository
+    private lateinit var filmRepository: FilmRepository
 
     @Mock
     private lateinit var movieObserver: Observer<PagedList<MovieEntity>>
@@ -42,21 +42,21 @@ class FavoriteViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = FavoriteViewModel(filmCatalogueRepository)
+        viewModel = FavoriteViewModel(filmRepository)
     }
 
     @Test
     fun setFavListMovies() {
         viewModel.setFavListMovie(DataDetailDummy.getDetailMovie())
-        verify(filmCatalogueRepository).setMoviesFav(DataDetailDummy.getDetailMovie(), true)
-        verifyNoMoreInteractions(filmCatalogueRepository)
+        verify(filmRepository).setMoviesFav(DataDetailDummy.getDetailMovie(), true)
+        verifyNoMoreInteractions(filmRepository)
     }
 
     @Test
     fun setFavListTVShows() {
         viewModel.setFavListTVShow(DataDetailDummy.getDetailTVShow())
-        verify(filmCatalogueRepository).setTVShowsFav(DataDetailDummy.getDetailTVShow(), true)
-        verifyNoMoreInteractions(filmCatalogueRepository)
+        verify(filmRepository).setTVShowsFav(DataDetailDummy.getDetailTVShow(), true)
+        verifyNoMoreInteractions(filmRepository)
     }
 
     @Test
@@ -66,9 +66,9 @@ class FavoriteViewModelTest {
         val movies = MutableLiveData<PagedList<MovieEntity>>()
         movies.value = dummyMovie
 
-        `when`(filmCatalogueRepository.getMoviesFav()).thenReturn(movies)
+        `when`(filmRepository.getMoviesFav()).thenReturn(movies)
         val favMovie = viewModel.getFavListMovie().value
-        verify(filmCatalogueRepository).getMoviesFav()
+        verify(filmRepository).getMoviesFav()
         Assert.assertNotNull(favMovie)
         Assert.assertEquals(5, favMovie?.size)
 
@@ -83,9 +83,9 @@ class FavoriteViewModelTest {
         val tvShows = MutableLiveData<PagedList<TVShowEntity>>()
         tvShows.value = dummyTVShow
 
-        `when`(filmCatalogueRepository.getTVShowsFav()).thenReturn(tvShows)
+        `when`(filmRepository.getTVShowsFav()).thenReturn(tvShows)
         val favTVShow = viewModel.getFavListTVShow().value
-        verify(filmCatalogueRepository).getTVShowsFav()
+        verify(filmRepository).getTVShowsFav()
         Assert.assertNotNull(favTVShow)
         Assert.assertEquals(5, favTVShow?.size)
 

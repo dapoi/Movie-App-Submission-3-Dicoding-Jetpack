@@ -4,22 +4,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
 import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
-import com.dapoidev.moviecatalogue.data.source.IFilmCatalogueRepository
+import com.dapoidev.moviecatalogue.data.source.FilmRepository
 import com.dapoidev.moviecatalogue.vo.Resource
 
-class DetailFilmViewModel(private val filmCatalogueRepository: IFilmCatalogueRepository) :
+class DetailFilmViewModel(private val filmRepository: FilmRepository) :
     ViewModel() {
 
     private lateinit var dataDetailMovie: LiveData<Resource<MovieEntity>>
     private lateinit var dataDetailTVShow: LiveData<Resource<TVShowEntity>>
 
     fun setDataMovie(movieId: Int) : LiveData<Resource<MovieEntity>> {
-        dataDetailMovie = filmCatalogueRepository.loadDetailMovies(movieId)
+        dataDetailMovie = filmRepository.loadDetailMovies(movieId)
         return dataDetailMovie
     }
 
     fun setDataTVShow(tvShowId: Int) : LiveData<Resource<TVShowEntity>> {
-        dataDetailTVShow = filmCatalogueRepository.loadDetailTVShows(tvShowId)
+        dataDetailTVShow = filmRepository.loadDetailTVShows(tvShowId)
         return dataDetailTVShow
     }
 
@@ -27,7 +27,7 @@ class DetailFilmViewModel(private val filmCatalogueRepository: IFilmCatalogueRep
         val dataMovie = dataDetailMovie.value
         if (dataMovie?.data != null) {
             val newState = !dataMovie.data.addFav
-            filmCatalogueRepository.setMoviesFav(dataMovie.data, newState)
+            filmRepository.setMoviesFav(dataMovie.data, newState)
         }
     }
 
@@ -35,7 +35,7 @@ class DetailFilmViewModel(private val filmCatalogueRepository: IFilmCatalogueRep
         val dataTVShow = dataDetailTVShow.value
         if (dataTVShow?.data != null) {
             val newState = !dataTVShow.data.addFav
-            filmCatalogueRepository.setTVShowsFav(dataTVShow.data, newState)
+            filmRepository.setTVShowsFav(dataTVShow.data, newState)
         }
     }
 }

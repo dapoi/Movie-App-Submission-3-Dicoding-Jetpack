@@ -15,7 +15,7 @@ import com.dapoidev.moviecatalogue.data.source.local.LocalDataSource
 import com.dapoidev.moviecatalogue.data.utils.AppExecutors
 import com.dapoidev.moviecatalogue.vo.Resource
 
-class IFilmCatalogueRepository private constructor(
+class FilmRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors,
@@ -23,15 +23,15 @@ class IFilmCatalogueRepository private constructor(
 
     companion object {
         @Volatile
-        private var instance: IFilmCatalogueRepository? = null
+        private var instance: FilmRepository? = null
 
         fun getInstance(
             remote: RemoteDataSource,
             localDataSource: LocalDataSource,
             appExecutors: AppExecutors,
-        ): IFilmCatalogueRepository =
+        ): FilmRepository =
             instance ?: synchronized(this) {
-                IFilmCatalogueRepository(remote, localDataSource, appExecutors).apply {
+                FilmRepository(remote, localDataSource, appExecutors).apply {
                     instance = this
                 }
             }

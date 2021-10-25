@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dapoidev.moviecatalogue.di.Injection
-import com.dapoidev.moviecatalogue.data.source.IFilmCatalogueRepository
+import com.dapoidev.moviecatalogue.data.source.FilmRepository
 
-class ViewModelFactory private constructor(private val filmCatalogueRepository: IFilmCatalogueRepository) :
+class ViewModelFactory private constructor(private val filmRepository: FilmRepository) :
     ViewModelProvider.NewInstanceFactory() {
 
     companion object {
@@ -25,13 +25,13 @@ class ViewModelFactory private constructor(private val filmCatalogueRepository: 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(FilmViewModel::class.java) -> {
-                FilmViewModel(filmCatalogueRepository) as T
+                FilmViewModel(filmRepository) as T
             }
             modelClass.isAssignableFrom(DetailFilmViewModel::class.java) -> {
-                DetailFilmViewModel(filmCatalogueRepository) as T
+                DetailFilmViewModel(filmRepository) as T
             }
             modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
-                FavoriteViewModel(filmCatalogueRepository) as T
+                FavoriteViewModel(filmRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

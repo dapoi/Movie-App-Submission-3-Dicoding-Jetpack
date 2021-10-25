@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
 import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
-import com.dapoidev.moviecatalogue.data.source.IFilmCatalogueRepository
+import com.dapoidev.moviecatalogue.data.source.FilmRepository
 import com.dapoidev.moviecatalogue.data.utils.DataDetailDummy
 import com.dapoidev.moviecatalogue.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
@@ -32,7 +32,7 @@ class DetailFilmViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var filmCatalogueRepository: IFilmCatalogueRepository
+    private lateinit var filmRepository: FilmRepository
 
     @Mock
     private lateinit var movieObserver: Observer<Resource<MovieEntity>>
@@ -42,7 +42,7 @@ class DetailFilmViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = DetailFilmViewModel(filmCatalogueRepository)
+        viewModel = DetailFilmViewModel(filmRepository)
     }
 
     @Test
@@ -50,7 +50,7 @@ class DetailFilmViewModelTest {
         val movie = MutableLiveData<Resource<MovieEntity>>()
         movie.value = Resource.success(DataDetailDummy.getDetailMovie())
 
-        `when`(filmCatalogueRepository.loadDetailMovies(movieID)).thenReturn(movie)
+        `when`(filmRepository.loadDetailMovies(movieID)).thenReturn(movie)
         viewModel.setDataMovie(movieID).observeForever(movieObserver)
         verify(movieObserver).onChanged(movie.value)
     }
@@ -60,7 +60,7 @@ class DetailFilmViewModelTest {
         val tvShow = MutableLiveData<Resource<TVShowEntity>>()
         tvShow.value = Resource.success(DataDetailDummy.getDetailTVShow())
 
-        `when`(filmCatalogueRepository.loadDetailTVShows(tvShowID)).thenReturn(tvShow)
+        `when`(filmRepository.loadDetailTVShows(tvShowID)).thenReturn(tvShow)
         viewModel.setDataTVShow(tvShowID).observeForever(tvShowObserver)
         verify(tvShowObserver).onChanged(tvShow.value)
     }
@@ -70,11 +70,11 @@ class DetailFilmViewModelTest {
         val movies = MutableLiveData<Resource<MovieEntity>>()
         movies.value = Resource.success(DataDetailDummy.getDetailMovie())
 
-        `when`(filmCatalogueRepository.loadDetailMovies(movieID)).thenReturn(movies)
+        `when`(filmRepository.loadDetailMovies(movieID)).thenReturn(movies)
 
         viewModel.setDataMovie(movieID).observeForever(movieObserver)
         viewModel.setMovieFavorite()
-        verify(filmCatalogueRepository).setMoviesFav((movies.value?.data) as MovieEntity, true)
+        verify(filmRepository).setMoviesFav((movies.value?.data) as MovieEntity, true)
     }
 
     @Test
@@ -82,10 +82,10 @@ class DetailFilmViewModelTest {
         val tvShow = MutableLiveData<Resource<TVShowEntity>>()
         tvShow.value = Resource.success(DataDetailDummy.getDetailTVShow())
 
-        `when`(filmCatalogueRepository.loadDetailTVShows(tvShowID)).thenReturn(tvShow)
+        `when`(filmRepository.loadDetailTVShows(tvShowID)).thenReturn(tvShow)
 
         viewModel.setDataTVShow(tvShowID).observeForever(tvShowObserver)
         viewModel.setTVShowFavorite()
-        verify(filmCatalogueRepository).setTVShowsFav((tvShow.value?.data) as TVShowEntity, true)
+        verify(filmRepository).setTVShowsFav((tvShow.value?.data) as TVShowEntity, true)
     }
 }

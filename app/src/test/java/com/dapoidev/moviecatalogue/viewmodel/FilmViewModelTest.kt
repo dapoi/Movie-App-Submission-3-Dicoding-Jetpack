@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
 import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
-import com.dapoidev.moviecatalogue.data.source.IFilmCatalogueRepository
+import com.dapoidev.moviecatalogue.data.source.FilmRepository
 import com.dapoidev.moviecatalogue.vo.Resource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -28,7 +28,7 @@ class FilmViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var filmCatalogueRepository: IFilmCatalogueRepository
+    private lateinit var filmRepository: FilmRepository
 
     @Mock
     private lateinit var movieObserver: Observer<Resource<PagedList<MovieEntity>>>
@@ -44,7 +44,7 @@ class FilmViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = FilmViewModel(filmCatalogueRepository)
+        viewModel = FilmViewModel(filmRepository)
     }
 
     @Test
@@ -54,9 +54,9 @@ class FilmViewModelTest {
         val movies = MutableLiveData<Resource<PagedList<MovieEntity>>>()
         movies.value = dummyMovie
 
-        `when`(filmCatalogueRepository.loadMovies()).thenReturn(movies)
+        `when`(filmRepository.loadMovies()).thenReturn(movies)
         val movieEntity = viewModel.getListMovies().value?.data
-        verify(filmCatalogueRepository).loadMovies()
+        verify(filmRepository).loadMovies()
         assertNotNull(movieEntity)
         assertEquals(5, movieEntity?.size)
 
@@ -71,9 +71,9 @@ class FilmViewModelTest {
         val tvShows = MutableLiveData<Resource<PagedList<TVShowEntity>>>()
         tvShows.value = dummyTVShow
 
-        `when`(filmCatalogueRepository.loadTVShows()).thenReturn(tvShows)
+        `when`(filmRepository.loadTVShows()).thenReturn(tvShows)
         val tvShowEntity = viewModel.getListTVShows().value?.data
-        verify(filmCatalogueRepository).loadTVShows()
+        verify(filmRepository).loadTVShows()
         assertNotNull(tvShowEntity)
         assertEquals(5, tvShowEntity?.size)
 
