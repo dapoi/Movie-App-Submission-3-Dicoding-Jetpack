@@ -3,11 +3,11 @@ package com.dapoidev.moviecatalogue.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
-import com.dapoidev.moviecatalogue.model.data.entity.MovieEntity
-import com.dapoidev.moviecatalogue.model.data.entity.TVShowEntity
-import com.dapoidev.moviecatalogue.model.data.remote.repository.FilmCatalogueRepository
+import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
+import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
+import com.dapoidev.moviecatalogue.data.source.IFilmCatalogueRepository
 
-class FavoriteViewModel(private val filmCatalogueRepository: FilmCatalogueRepository) : ViewModel() {
+class FavoriteViewModel(private val filmCatalogueRepository: IFilmCatalogueRepository) : ViewModel() {
 
     fun getFavListMovie(): LiveData<PagedList<MovieEntity>> = filmCatalogueRepository.getMoviesFav()
 

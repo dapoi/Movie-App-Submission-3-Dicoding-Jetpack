@@ -4,10 +4,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
-import com.dapoidev.moviecatalogue.model.data.entity.MovieEntity
-import com.dapoidev.moviecatalogue.model.data.entity.TVShowEntity
-import com.dapoidev.moviecatalogue.model.data.remote.repository.FilmCatalogueRepository
-import com.dapoidev.moviecatalogue.utils.DataDetailDummy
+import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
+import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
+import com.dapoidev.moviecatalogue.data.source.IFilmCatalogueRepository
+import com.dapoidev.moviecatalogue.data.utils.DataDetailDummy
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import org.junit.Assert
@@ -28,7 +28,7 @@ class FavoriteViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var filmCatalogueRepository: FilmCatalogueRepository
+    private lateinit var filmCatalogueRepository: IFilmCatalogueRepository
 
     @Mock
     private lateinit var movieObserver: Observer<PagedList<MovieEntity>>

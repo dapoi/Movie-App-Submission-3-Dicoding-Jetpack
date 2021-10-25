@@ -3,10 +3,10 @@ package com.dapoidev.moviecatalogue.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.dapoidev.moviecatalogue.model.data.entity.MovieEntity
-import com.dapoidev.moviecatalogue.model.data.entity.TVShowEntity
-import com.dapoidev.moviecatalogue.model.data.remote.repository.FilmCatalogueRepository
-import com.dapoidev.moviecatalogue.utils.DataDetailDummy
+import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
+import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
+import com.dapoidev.moviecatalogue.data.source.IFilmCatalogueRepository
+import com.dapoidev.moviecatalogue.data.utils.DataDetailDummy
 import com.dapoidev.moviecatalogue.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
@@ -32,7 +32,7 @@ class DetailFilmViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var filmCatalogueRepository: FilmCatalogueRepository
+    private lateinit var filmCatalogueRepository: IFilmCatalogueRepository
 
     @Mock
     private lateinit var movieObserver: Observer<Resource<MovieEntity>>

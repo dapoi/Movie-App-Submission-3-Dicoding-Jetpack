@@ -11,7 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.dapoidev.moviecatalogue.R
 import com.dapoidev.moviecatalogue.databinding.ItemTvShowsBinding
-import com.dapoidev.moviecatalogue.model.data.entity.TVShowEntity
+import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
 import com.dapoidev.moviecatalogue.view.activity.DetailActivity
 
 class TVShowsAdapter :

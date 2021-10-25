@@ -3,10 +3,13 @@ package com.dapoidev.moviecatalogue.model.data.remote.repository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
-import com.dapoidev.moviecatalogue.model.data.entity.MovieEntity
-import com.dapoidev.moviecatalogue.model.data.entity.TVShowEntity
-import com.dapoidev.moviecatalogue.model.data.source.RemoteDataSource
-import com.dapoidev.moviecatalogue.model.data.source.local.LocalDataSource
+import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
+import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
+import com.dapoidev.moviecatalogue.data.source.remote.RemoteDataSource
+import com.dapoidev.moviecatalogue.data.source.local.LocalDataSource
+import com.dapoidev.moviecatalogue.data.utils.AppExecutors
+import com.dapoidev.moviecatalogue.data.utils.DataDetailDummy
+import com.dapoidev.moviecatalogue.data.utils.DataDummy
 import com.dapoidev.moviecatalogue.utils.*
 import com.dapoidev.moviecatalogue.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
@@ -23,12 +26,14 @@ class FilmCatalogueRepositoryTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
+    @get:Rule
+    var coroutinesTestRule = Corout
 
     private val remote = mock(RemoteDataSource::class.java)
     private val local = mock(LocalDataSource::class.java)
     private val appExecutors = mock(AppExecutors::class.java)
 
-    private val filmCatalogueRepository = FakeFilmCatalogueRepository(remote, local, appExecutors)
+    private val filmCatalogueRepository = FakeIFilmCatalogueRepository(remote, local, appExecutors)
 
     private val responseMovie = DataDummy.getRemoteMovies()
     private val responseTVShow = DataDummy.getRemoteTVShows()

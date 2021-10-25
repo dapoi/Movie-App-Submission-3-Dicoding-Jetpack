@@ -11,8 +11,8 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.dapoidev.moviecatalogue.R
-import com.dapoidev.moviecatalogue.utils.DataDummy
-import com.dapoidev.moviecatalogue.utils.EspressoIdlingResource
+import com.dapoidev.moviecatalogue.data.utils.DataDummy
+import com.dapoidev.moviecatalogue.data.utils.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before
 import org.junit.Test

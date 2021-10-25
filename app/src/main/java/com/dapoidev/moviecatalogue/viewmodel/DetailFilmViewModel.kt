@@ -2,12 +2,12 @@ package com.dapoidev.moviecatalogue.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.dapoidev.moviecatalogue.model.data.entity.MovieEntity
-import com.dapoidev.moviecatalogue.model.data.entity.TVShowEntity
-import com.dapoidev.moviecatalogue.model.data.remote.repository.FilmCatalogueRepository
+import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
+import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
+import com.dapoidev.moviecatalogue.data.source.IFilmCatalogueRepository
 import com.dapoidev.moviecatalogue.vo.Resource
 
-class DetailFilmViewModel(private val filmCatalogueRepository: FilmCatalogueRepository) :
+class DetailFilmViewModel(private val filmCatalogueRepository: IFilmCatalogueRepository) :
     ViewModel() {
 
     private lateinit var dataDetailMovie: LiveData<Resource<MovieEntity>>

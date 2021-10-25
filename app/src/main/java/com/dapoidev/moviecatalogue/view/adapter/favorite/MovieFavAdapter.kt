@@ -11,7 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.dapoidev.moviecatalogue.R
 import com.dapoidev.moviecatalogue.databinding.ItemMoviesBinding
-import com.dapoidev.moviecatalogue.model.data.entity.MovieEntity
+import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
 import com.dapoidev.moviecatalogue.view.activity.DetailActivity
 
 class MovieFavAdapter : PagedListAdapter<MovieEntity, MovieFavAdapter.MovieFavViewHolder>(

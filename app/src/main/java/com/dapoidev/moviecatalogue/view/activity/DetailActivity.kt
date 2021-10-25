@@ -10,8 +10,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.dapoidev.moviecatalogue.R
 import com.dapoidev.moviecatalogue.databinding.ActivityDetailBinding
-import com.dapoidev.moviecatalogue.model.data.entity.MovieEntity
-import com.dapoidev.moviecatalogue.model.data.entity.TVShowEntity
+import com.dapoidev.moviecatalogue.data.source.local.model.MovieEntity
+import com.dapoidev.moviecatalogue.data.source.local.model.TVShowEntity
 import com.dapoidev.moviecatalogue.viewmodel.DetailFilmViewModel
 import com.dapoidev.moviecatalogue.viewmodel.ViewModelFactory
 import com.dapoidev.moviecatalogue.vo.Status
